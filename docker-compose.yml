@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  mongodb:
+    image: mongo
+    container_name: mars_rover_kata
+    environment:
+      - MONGO_INITDB_DATABASE=mars
+      - MONGO_INITDB_USERNAME=mars
+      - MONGO_INITDB_PASSWORD=mars
+    volumes:
+      - ./docker/mongodb/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./data:/data/db
+    ports:
+      - 27017:27017
+    restart: always
+  mongodb-test:
+    image: mongo
+    container_name: mars_rover_kata_test
+    environment:
+      - MONGO_INITDB_DATABASE=marstest
+      - MONGO_INITDB_USERNAME=marstest
+      - MONGO_INITDB_PASSWORD=marstest
+    volumes:
+      - ./docker/mongodb/init-mongo-test.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./data_test:/data/db
+    ports:
+      - 27018:27017
+    restart: always
