@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src/server.js --watch",
-    "test": "jest --verbose",
+    "start": "nodemon ./dist/server.js --watch",
+    "test": "jest --verbose ./dist",
     "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down -v"
+    "docker:down": "docker-compose down -v",
+    "build": "rm -rf dist && tsc"
   },
   "keywords": [],
   "author": "",
@@ -21,9 +22,11 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/node": "^14.14.37",
     "jest": "^26.6.3",
     "nodemon": "^2.0.7",
     "prettier": "2.2.1",
-    "supertest": "^6.1.3"
+    "supertest": "^6.1.3",
+    "typescript": "^4.2.4"
   }
 }
